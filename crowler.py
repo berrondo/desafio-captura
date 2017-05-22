@@ -5,6 +5,7 @@ from re import findall
 from sqlite3 import IntegrityError
 
 import requests
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 
 from padroes import *
 from navegador import Navegador
@@ -30,7 +31,9 @@ def downloader(url, mostrar_mais=False):
             elem = browser.find_element_by_xpath('//span[contains(text(), "MOSTRAR MAIS PRODUTOS")]')
             elem.click()
             print '^',
-        except: # selenium.common.exceptions.ElementNotInteractableException:
+        except NoSuchElementException:
+            break
+        except ElementNotInteractableException:
             break
     conteudo = browser.page_source
     Navegador.quit()
