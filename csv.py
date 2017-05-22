@@ -4,9 +4,9 @@
 import codecs
 
 
-def arquivo_csv(db, separador=';'):
+def arquivo_csv(bd, separador=';'):
     csv = separador.join(('nome', 'titulo', 'url'))
-    for rs in db.select():
+    for rs in bd.select():
         if rs[0]:
             linha = separador.join((rs[0], rs[1], rs[2]))
             csv += '\n'+linha

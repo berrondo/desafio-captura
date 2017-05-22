@@ -64,8 +64,8 @@ class TestExtracaoDeDadosDoProduto(unittest.TestCase):
         self.assertEqual(
             [u'Hypn\xf4se Lanc\xf4me - Perfume Feminino - Eau de Toilette - 30ml',
              u'Hypn\xf4se Lanc\xf4me - Perfume Feminino - Eau de Toilette - 30ml',
-            r'file:///%s/fixtures/um_perfume.html' % self.cwd]
-            , linha_csv)
+             r'file:///%s/fixtures/um_perfume.html' % self.cwd],
+            linha_csv)
 
 
 if __name__ == '__main__':

@@ -41,16 +41,15 @@ def downloader(url, mostrar_mais=False):
 
 
 def subdepartamentos(home):
-    subdepartamentos = PADRAO_DE_SUBDEPARTAMENTOS.search(downloader(home)).group(1)
-    links = findall(PADRAO_DE_LINK_PARA_SUBDEPARTAMENTOS, subdepartamentos)
+    subdepts = PADRAO_DE_SUBDEPARTAMENTOS.search(downloader(home)).group(1)
+    links = findall(PADRAO_DE_LINK_PARA_SUBDEPARTAMENTOS, subdepts)
     return reversed(links)
 
 
 def produtos(subdepartamento, mostrar_mais=False):
     texto = downloader(subdepartamento, mostrar_mais=mostrar_mais)
-    produtos = findall(PADRAO_DE_LINK_PARA_PRODUTO, texto)
-    return produtos
-    
+    return findall(PADRAO_DE_LINK_PARA_PRODUTO, texto)
+
     
 def detalhes(link_para_o_produto):
     produto = downloader(link_para_o_produto)
@@ -67,20 +66,20 @@ def detalhes(link_para_o_produto):
     return [nome, titulo, link_para_o_produto]
 
 
-def crowler(home, db):
+def crowler(home, bd):
     for subdepartamento in subdepartamentos(home):
-        print '[[%s]]' % subdepartamento,
+        print '[%s]' % subdepartamento,
         for link_para_produto in produtos(subdepartamento, mostrar_mais=True):
-            if not db.exists(link_para_produto):
+            if not bd.exists(link_para_produto):
                 linha = detalhes(link_para_produto)
                 linha.append(subdepartamento)
                 try:
-                    db.insert(*linha)
+                    bd.insert(*linha)
                     print '.',
                 except IntegrityError:
-                    print '!', # log url duplicada!
+                    print '!',  # log url duplicada!
             else:
-                print '!', # log url duplicada!
+                print '!',  # log url duplicada!
     Navegador.quit()
 
 
