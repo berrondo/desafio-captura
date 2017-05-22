@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from os.path import dirname, join
 import sqlite3
 
-con = sqlite3.connect('produtos.db')
+aqui = dirname(__file__)
+
+con = sqlite3.connect(join(aqui, 'produtos.db'))
 c = con.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS links (nome text, titulo text, url text UNIQUE, subdepartamento text)''')
 c.execute('''CREATE TABLE IF NOT EXISTS web (link text UNIQUE, html text, callback text)''')
