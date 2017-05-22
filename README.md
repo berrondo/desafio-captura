@@ -16,6 +16,12 @@ rode:
 pip install requirements.txt
 ```
 
+você vai precisar do Firefox e do driver para o selenium, o qual pode ser obtido aqui, entre drivers para outros browsers:
+
+```
+http://seleniumhq.github.io/selenium/docs/api/py/#drivers
+```
+
 ## funciona?... execute:
 
 ```
