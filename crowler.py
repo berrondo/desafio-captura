@@ -84,6 +84,6 @@ def crowler(home, bd):
 
 
 if __name__ == '__main__':
-    import db
+    from db import db
     crowler('http://epocacosmeticos.com.br', db)
     Navegador.quit()

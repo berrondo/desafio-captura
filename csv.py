@@ -16,5 +16,5 @@ def arquivo_csv(bd, separador=';'):
 
         
 if __name__ == '__main__':
-    import db
+    from db import db
     arquivo_csv(db)
