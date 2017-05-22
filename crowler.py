@@ -5,7 +5,7 @@ from re import findall
 from sqlite3 import IntegrityError
 
 import requests
-from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, WebDriverException
 
 from navegador.navegador import Navegador
 from padroes import *
@@ -34,6 +34,8 @@ def downloader(url, mostrar_mais=False):
         except NoSuchElementException:
             break
         except ElementNotInteractableException:
+            break
+        except WebDriverException:
             break
     conteudo = browser.page_source
     Navegador.quit()
