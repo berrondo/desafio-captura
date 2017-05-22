@@ -68,10 +68,10 @@ def detalhes(link_para_o_produto):
     return [nome, titulo, link_para_o_produto]
 
 
-def crowler(home, bd):
+def crowler(home, bd, mostrar_mais=False):
     for subdepartamento in subdepartamentos(home):
         print '[%s]' % subdepartamento,
-        for link_para_produto in produtos(subdepartamento, mostrar_mais=True):
+        for link_para_produto in produtos(subdepartamento, mostrar_mais=mostrar_mais):
             if not bd.exists(link_para_produto):
                 linha = detalhes(link_para_produto)
                 linha.append(subdepartamento)
@@ -87,5 +87,5 @@ def crowler(home, bd):
 
 if __name__ == '__main__':
     from db import db
-    crowler('http://epocacosmeticos.com.br', db)
+    crowler('http://epocacosmeticos.com.br', db, mostrar_mais=False)
     Navegador.quit()
