@@ -2,15 +2,19 @@
 
 funciona com Python 2.7
 
-clone o projeto
+clone o projeto:
 
-https://github.com/berrondo/desafio-captura.git
+```
+git clone https://github.com/berrondo/desafio-captura.git
+```
 
 crie e ative seu virtualenv ;-)
 
-rode
+rode:
 
+```
 pip install requirements.txt
+```
 
 ## funciona?... execute:
 
