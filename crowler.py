@@ -7,8 +7,8 @@ from sqlite3 import IntegrityError
 import requests
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 
+from navegador.navegador import Navegador
 from padroes import *
-from navegador import Navegador
 
 
 def downloader_alternativo(caminho):
