@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+import sys
+sys.stdout.flush()
+
 import codecs
 
 
@@ -10,7 +14,7 @@ def arquivo_csv(bd, separador=';'):
         if rs[0]:
             linha = separador.join((rs[0], rs[1], rs[2]))
             csv += '\n'+linha
-            print '+',
+            print('+', end='')
     with codecs.open('epoca_cosmeticos.csv', 'w', encoding='utf8') as arq:
         arq.write(csv)
 

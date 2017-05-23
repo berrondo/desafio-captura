@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+import sys
+sys.stdout.flush()
+
+import codecs
 from re import findall
 from sqlite3 import IntegrityError
 
@@ -14,9 +19,8 @@ from padroes import *
 def downloader_alternativo(caminho):
     if caminho.startswith(r'file:///'):
         caminho = caminho.replace(r'file:///', '')
-        with open(caminho, 'r') as arq:
-            conteudo = arq.read()
-            return unicode(conteudo, 'utf-8')
+        with codecs.open(caminho, 'r', encoding='utf-8') as arq:
+            return arq.read()
     return requests.get(caminho).text
 
 
@@ -30,12 +34,15 @@ def downloader(url, mostrar_mais=False):
         try:
             elem = browser.find_element_by_xpath('//span[contains(text(), "MOSTRAR MAIS PRODUTOS")]')
             elem.click()
-            print '^',
+            print('^', end='')
         except NoSuchElementException:
+            print('o', end='')
             break
         except ElementNotInteractableException:
+            print('-', end='')
             break
         except WebDriverException:
+            print('&', end='')
             break
     conteudo = browser.page_source
     Navegador.quit()
@@ -45,7 +52,7 @@ def downloader(url, mostrar_mais=False):
 def subdepartamentos(home):
     subdepts = PADRAO_DE_SUBDEPARTAMENTOS.search(downloader(home)).group(1)
     links = findall(PADRAO_DE_LINK_PARA_SUBDEPARTAMENTOS, subdepts)
-    return reversed(links)
+    return links  # reversed(links)
 
 
 def produtos(subdepartamento, mostrar_mais=False):
@@ -70,22 +77,22 @@ def detalhes(link_para_o_produto):
 
 def crowler(home, bd, mostrar_mais=False):
     for subdepartamento in subdepartamentos(home):
-        print '[%s]' % subdepartamento,
+        print('[%s]' % subdepartamento, end='')
         for link_para_produto in produtos(subdepartamento, mostrar_mais=mostrar_mais):
             if not bd.exists(link_para_produto):
                 linha = detalhes(link_para_produto)
                 linha.append(subdepartamento)
                 try:
                     bd.insert(*linha)
-                    print '.',
+                    print('.', end='')
                 except IntegrityError:
-                    print '!',  # log url duplicada!
+                    print('x', end='')  # log url duplicada!
             else:
-                print '!',  # log url duplicada!
+                print('!', end='')  # log url duplicada!
     Navegador.quit()
 
 
 if __name__ == '__main__':
     from db import db
-    crowler('http://epocacosmeticos.com.br', db, mostrar_mais=False)
+    crowler('http://epocacosmeticos.com.br', db, mostrar_mais=True)
     Navegador.quit()
