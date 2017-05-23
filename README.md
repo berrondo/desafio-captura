@@ -46,10 +46,20 @@ a partir do banco será gerado no diretório da aplicação um arquivo `.csv` se
 
 há uma versão assíncrona incipiente do crowler em acrowler.py que somente funciona com Python 3.5+
 
+para experimentá-la, em um `env` com Python3.5+, instale também:
+
+
+```
+pip install aiohttp
+```
+
 ## a melhorar:
 
-  * abordagem naive para obtenção dos links baseada em regexes. há .group(1) diretamente no objeto match em alguns casos. funcionou para todo este site ;-)
-  * melhorar estratégia de fixtures off-line (em banco?) para poder testar o crowler o o "csv"
+  * abordagem naive para obtenção dos links baseada em regexes. há `.group(1)` diretamente no objeto `match` em alguns casos. funcionou para todo este site ;-)
+  * não há tratamento para links inexistentes, que aparentemente redirecionam. `nome e titulo` são salvos no banco como `(null)` nestes casos
+  * por outro lado, com a estratégia de salvar em banco os links e não seguí-los novamente, não se fica sabendo quando um link deixa de apontar para seu produto...
+  * constatou-se que por todo o site, `nome e titulo` tem o mesmo valor! poderia-se poupar a recuperação de um deles...
+  * nos testes, melhorar estratégia de fixtures off-line (em banco?) para poder testar o crowler o o "csv"
   * parâmetros de linha de comando!
-  * utilizar um log em vez dos prints
+  * utilizar um log em vez dos prints!
   * abordagem distribuída/assíncrona!
