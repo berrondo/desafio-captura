@@ -1,6 +1,6 @@
 ## como instalar:
 
-funciona com Python 2.7
+funciona com Python 2.7 e Python 3.6 \o/
 
 clone o projeto:
 
@@ -40,8 +40,16 @@ o crowler populará um banco Sqlite com `nome, titulo e url` de todos os produto
 python csv.py
 ```
 
-a partir do banco será gerado no diretório da aplicação um arquivo `.csv` separado por `;` com `nome, titulo e url` dos produtos
+a partir do banco será gerado no diretório da aplicação um arquivo `.csv` separado por `;` com `nome, titulo e url` dos produtos.
+
+## versão assíncrona:
+
+há uma versão assíncrona incipiente do crowler em acrowler.py que somente funciona com Python 3.5+
 
 ## a melhorar:
 
-...
+  * abordagem naive para obtenção dos links baseada em regexes. há .group(1) diretamente no objeto match em alguns casos. funcionou para todo este site ;-)
+  * melhorar estratégia de fixtures off-line (em banco?) para poder testar o crowler o o "csv"
+  * parâmetros de linha de comando!
+  * utilizar um log em vez dos prints
+  * abordagem distribuída/assíncrona!
