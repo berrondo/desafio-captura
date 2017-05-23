@@ -16,7 +16,7 @@ Bônus:
 
   * Arquitetura distribuída.
   
-    > pensei bastante a respeito mas não cheguei a implementar nada. em vez disso fiz uma assíncrona, minha primeira incursão no async/await com Python 3.6 \o/ , que coloquei no branch  "async".
+    > pensei bastante a respeito mas não cheguei a implementar nada. em vez disso fiz uma assíncrona, minha primeira incursão no async/await com Python 3.6 \o/ , que coloquei no módulo  "async".
     pensei em fazer na unha mesmo "obtedores de links" que colocariam os links no banco, registrando um callback e os callbacks sempre procurando no banco o que fazer e colocando seu resultado em outro banco e assim por diante... mais ou menos o propósito do projeto [pypelinin](https://github.com/NAMD/pypelinin) do qual participei de alguma discussão inicial quanto estava na FGV. para ser legal, essa solução deveria ser assíncrona e considerar "auto-scaling" dos workers...
     
     
